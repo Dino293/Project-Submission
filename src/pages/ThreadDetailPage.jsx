@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { fetchThreadDetail, clearThreadDetail } from '../store/slices/threadsSlice'
-import { getOwnProfile } from '../store/slices/authSlice'
+import { getOwnProfile } from '../store/slices/AuthSlice'
 import { formatDate } from '../utils/formatters'
 import Loading from '../components/common/Loading'
 import Navbar from '../components/common/Navbar'
@@ -43,9 +43,9 @@ const ThreadDetailPage = () => {
     <div className='min-h-screen bg-gray-50'>
       <Navbar />
 
-      <div className='container mx-auto px-4 py-8'>
+      <div className='container px-4 py-8 mx-auto'>
         {/* Back button */}
-        <Link to='/' className='inline-flex items-center text-blue-600 hover:text-blue-800 mb-6'>
+        <Link to='/' className='inline-flex items-center mb-6 text-blue-600 hover:text-blue-800'>
           <svg className='w-4 h-4 mr-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
             <path
               strokeLinecap='round'
@@ -58,7 +58,7 @@ const ThreadDetailPage = () => {
         </Link>
 
         {/* Thread Content */}
-        <div className='bg-white rounded-lg shadow p-6 mb-8'>
+        <div className='p-6 mb-8 bg-white rounded-lg shadow'>
           <div className='flex items-start space-x-4'>
             {/* Vote Section */}
             <div className='flex flex-col items-center'>
@@ -72,11 +72,11 @@ const ThreadDetailPage = () => {
             </div>
 
             <div className='flex-1'>
-              <div className='flex justify-between items-start mb-4'>
+              <div className='flex items-start justify-between mb-4'>
                 <div>
-                  <h1 className='text-2xl font-bold text-gray-900 mb-2'>{threadDetail.title}</h1>
+                  <h1 className='mb-2 text-2xl font-bold text-gray-900'>{threadDetail.title}</h1>
                   <div className='flex items-center space-x-4'>
-                    <span className='px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800 rounded-full'>
+                    <span className='px-3 py-1 text-sm font-medium text-blue-800 bg-blue-100 rounded-full'>
                       {threadDetail.category || 'General'}
                     </span>
                     <span className='text-sm text-gray-500'>
@@ -86,7 +86,7 @@ const ThreadDetailPage = () => {
                 </div>
               </div>
 
-              <div className='prose max-w-none mb-6'>
+              <div className='mb-6 prose max-w-none'>
                 <p className='text-gray-700 whitespace-pre-line'>{threadDetail.body}</p>
               </div>
 
@@ -101,7 +101,7 @@ const ThreadDetailPage = () => {
                       )}&background=3b82f6&color=fff`
                     }
                     alt={threadDetail.owner?.name}
-                    className='w-10 h-10 rounded-full mr-3'
+                    className='w-10 h-10 mr-3 rounded-full'
                   />
                   <div>
                     <p className='font-medium text-gray-900'>{threadDetail.owner?.name}</p>
@@ -114,7 +114,7 @@ const ThreadDetailPage = () => {
         </div>
 
         {/* Comments Section */}
-        <div className='bg-white rounded-lg shadow p-6'>
+        <div className='p-6 bg-white rounded-lg shadow'>
           <div className='flex items-center justify-between mb-6'>
             <h2 className='text-xl font-bold text-gray-900'>
               Komentar ({threadDetail.comments?.length || 0})
@@ -128,7 +128,7 @@ const ThreadDetailPage = () => {
           {threadDetail.comments && threadDetail.comments.length > 0 ? (
             <CommentList comments={threadDetail.comments} threadId={id} />
           ) : (
-            <div className='text-center py-8 text-gray-500'>
+            <div className='py-8 text-center text-gray-500'>
               Belum ada komentar. Jadilah yang pertama berkomentar!
             </div>
           )}
