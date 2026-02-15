@@ -1,24 +1,24 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import {
   voteThread,
   optimisticVoteThread,
   optimisticVoteComment,
-} from '../../store/slices/threadsSlice'
-import { voteComment } from '../../store/slices/commentsSlice'
+} from '../../store/slices/threadsSlice';
+import { voteComment } from '../../store/slices/commentsSlice';
 
 const VoteButton = ({ type, id, threadId, currentVote, upVotes, downVotes }) => {
-  const dispatch = useDispatch()
-  const { user } = useSelector((state) => state.auth)
-  const { loading } = useSelector((state) => state.threads)
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.threads);
 
   const handleVote = async (voteType) => {
     if (!user) {
-      alert('Silakan login untuk melakukan vote')
-      return
+      alert('Silakan login untuk melakukan vote');
+      return;
     }
 
     // Jika mengklik vote yang sama, neutralkan
-    const newVoteType = currentVote === voteType ? 0 : voteType
+    const newVoteType = currentVote === voteType ? 0 : voteType;
 
     if (type === 'thread') {
       // Optimistic update untuk thread
@@ -28,10 +28,10 @@ const VoteButton = ({ type, id, threadId, currentVote, upVotes, downVotes }) => 
           voteType: newVoteType,
           userId: user.id,
         })
-      )
+      );
 
       try {
-        await dispatch(voteThread({ threadId: id, voteType: newVoteType })).unwrap()
+        await dispatch(voteThread({ threadId: id, voteType: newVoteType })).unwrap();
       } catch (error) {
         // Rollback jika gagal
         dispatch(
@@ -40,8 +40,8 @@ const VoteButton = ({ type, id, threadId, currentVote, upVotes, downVotes }) => 
             voteType: currentVote,
             userId: user.id,
           })
-        )
-        console.error('Failed to vote thread:', error)
+        );
+        console.error('Failed to vote thread:', error);
       }
     } else if (type === 'comment') {
       // Optimistic update untuk komentar
@@ -51,7 +51,7 @@ const VoteButton = ({ type, id, threadId, currentVote, upVotes, downVotes }) => 
           voteType: newVoteType,
           userId: user.id,
         })
-      )
+      );
 
       try {
         await dispatch(
@@ -60,7 +60,7 @@ const VoteButton = ({ type, id, threadId, currentVote, upVotes, downVotes }) => 
             commentId: id,
             voteType: newVoteType,
           })
-        ).unwrap()
+        ).unwrap();
       } catch (error) {
         // Rollback jika gagal
         dispatch(
@@ -69,15 +69,15 @@ const VoteButton = ({ type, id, threadId, currentVote, upVotes, downVotes }) => 
             voteType: currentVote,
             userId: user.id,
           })
-        )
-        console.error('Failed to vote comment:', error)
+        );
+        console.error('Failed to vote comment:', error);
       }
     }
-  }
+  };
 
   const getVoteCount = () => {
-    return (upVotes || 0) - (downVotes || 0)
-  }
+    return (upVotes || 0) - (downVotes || 0);
+  };
 
   return (
     <div className='flex items-center space-x-2'>
@@ -88,10 +88,10 @@ const VoteButton = ({ type, id, threadId, currentVote, upVotes, downVotes }) => 
         className={`
           flex items-center space-x-1 px-3 py-1.5 rounded-full transition-all duration-200
           ${
-            currentVote === 1
-              ? 'text-white bg-blue-500 shadow-md'
-              : 'text-gray-700 bg-gray-100 hover:bg-blue-50 hover:text-blue-600'
-          }
+    currentVote === 1
+      ? 'text-white bg-blue-500 shadow-md'
+      : 'text-gray-700 bg-gray-100 hover:bg-blue-50 hover:text-blue-600'
+    }
           ${!user ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
         `}
         title={user ? 'Suka' : 'Login untuk menyukai'}
@@ -118,10 +118,10 @@ const VoteButton = ({ type, id, threadId, currentVote, upVotes, downVotes }) => 
         className={`
           flex items-center space-x-1 px-3 py-1.5 rounded-full transition-all duration-200
           ${
-            currentVote === -1
-              ? 'text-white bg-red-500 shadow-md'
-              : 'text-gray-700 bg-gray-100 hover:bg-red-50 hover:text-red-600'
-          }
+    currentVote === -1
+      ? 'text-white bg-red-500 shadow-md'
+      : 'text-gray-700 bg-gray-100 hover:bg-red-50 hover:text-red-600'
+    }
           ${!user ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
         `}
         title={user ? 'Tidak Suka' : 'Login untuk tidak menyukai'}
@@ -148,7 +148,7 @@ const VoteButton = ({ type, id, threadId, currentVote, upVotes, downVotes }) => 
         </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default VoteButton
+export default VoteButton;

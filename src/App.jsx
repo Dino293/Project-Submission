@@ -1,24 +1,24 @@
-import { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import LoadingBar from '@dimasmds/react-redux-loading-bar'
-import { getOwnProfile } from './store/slices/AuthSlice'
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
-import ThreadsPage from './pages/ThreadsPage'
-import ThreadDetailPage from './pages/ThreadDetailPage'
-import LeaderboardPage from './pages/LeaderboardPage'
-import NotFoundPage from './pages/NotFoundPage'
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import LoadingBar from '@dimasmds/react-redux-loading-bar';
+import { getOwnProfile } from './store/slices/AuthSlice';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ThreadsPage from './pages/ThreadsPage';
+import ThreadDetailPage from './pages/ThreadDetailPage';
+import LeaderboardPage from './pages/LeaderboardPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
-  const dispatch = useDispatch()
-  const { token } = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (token) {
-      dispatch(getOwnProfile())
+      dispatch(getOwnProfile());
     }
-  }, [dispatch, token])
+  }, [dispatch, token]);
 
   return (
     <Router>
@@ -32,7 +32,7 @@ function App() {
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

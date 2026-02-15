@@ -1,31 +1,31 @@
 // File: src/pages/ThreadsPage.js
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchThreads, setSelectedCategory } from '../store/slices/threadsSlice'
-import { toggleThreadForm } from '../store/slices/uiSlice'
-import ThreadList from '../components/thread/ThreadList'
-import ThreadForm from '../components/thread/ThreadForm'
-import Loading from '../components/common/Loading'
-import Button from '../components/common/Button'
-import Navbar from '../components/common/Navbar'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchThreads, setSelectedCategory } from '../store/slices/threadsSlice';
+import { toggleThreadForm } from '../store/slices/uiSlice';
+import ThreadList from '../components/thread/ThreadList';
+import ThreadForm from '../components/thread/ThreadForm';
+import Loading from '../components/common/Loading';
+import Button from '../components/common/Button';
+import Navbar from '../components/common/Navbar';
 
 const ThreadsPage = () => {
-  const dispatch = useDispatch()
-  const { threads, loading, selectedCategory } = useSelector((state) => state.threads)
-  const { showThreadForm } = useSelector((state) => state.ui)
-  const { token } = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
+  const { threads, loading, selectedCategory } = useSelector((state) => state.threads);
+  const { showThreadForm } = useSelector((state) => state.ui);
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchThreads())
-  }, [dispatch])
+    dispatch(fetchThreads());
+  }, [dispatch]);
 
   // Extract unique categories from threads
-  const categories = ['all', ...new Set(threads.map((thread) => thread.category).filter(Boolean))]
+  const categories = ['all', ...new Set(threads.map((thread) => thread.category).filter(Boolean))];
 
   const filteredThreads =
     selectedCategory === 'all'
       ? threads
-      : threads.filter((thread) => thread.category === selectedCategory)
+      : threads.filter((thread) => thread.category === selectedCategory);
 
   return (
     <div className='min-h-screen bg-gray-50'>
@@ -93,7 +93,7 @@ const ThreadsPage = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ThreadsPage
+export default ThreadsPage;

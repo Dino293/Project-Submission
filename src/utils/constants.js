@@ -9,13 +9,13 @@ export const CATEGORIES = [
   'Health',
   'Sports',
   'Other',
-]
+];
 
-export const API_BASE_URL = 'https://forum-api.dicoding.dev/v1'
+export const API_BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
-export const TOKEN_KEY = 'token'
+export const TOKEN_KEY = 'token';
 
-export const DEFAULT_AVATAR = 'https://ui-avatars.com/api/?name=User&background=3b82f6&color=fff'
+export const DEFAULT_AVATAR = 'https://ui-avatars.com/api/?name=User&background=3b82f6&color=fff';
 
 export const ROUTES = {
   HOME: '/',
@@ -23,4 +23,4 @@ export const ROUTES = {
   REGISTER: '/register',
   THREAD_DETAIL: '/threads/:id',
   LEADERBOARD: '/leaderboard',
-}
+};

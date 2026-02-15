@@ -51,7 +51,7 @@ describe('Login Flow', () => {
     cy.wait('@getThreads');
 
     // Verifikasi redirect ke halaman utama
-    cy.url().should('eq', Cypress.config().baseUrl + '/');
+    cy.url().should('eq', `${Cypress.config().baseUrl  }/`);
 
     // Verifikasi nama user muncul di navbar
     cy.contains('Test User').should('be.visible');

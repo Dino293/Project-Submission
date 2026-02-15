@@ -1,7 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import threadsReducer, {
-  optimisticVoteThread,
-} from '../../store/slices/threadsSlice';
+import threadsReducer, { optimisticVoteThread } from '../../store/slices/threadsSlice';
 
 describe('threads reducer', () => {
   const initialState = {

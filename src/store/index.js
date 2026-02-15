@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import authReducer from './slices/AuthSlice'
-import threadsReducer from './slices/threadsSlice'
-import commentsReducer from './slices/commentsSlice'
-import leaderboardsReducer from './slices/leaderboardsSlice'
-import uiReducer from './slices/uiSlice'
-import { loadingBarReducer } from '@dimasmds/react-redux-loading-bar'
+import { configureStore } from '@reduxjs/toolkit';
+import authReducer from './slices/AuthSlice';
+import threadsReducer from './slices/threadsSlice';
+import commentsReducer from './slices/commentsSlice';
+import leaderboardsReducer from './slices/leaderboardsSlice';
+import uiReducer from './slices/uiSlice';
+import { loadingBarReducer } from '@dimasmds/react-redux-loading-bar';
 
 export const store = configureStore({
   reducer: {
@@ -19,4 +19,4 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-})
+});

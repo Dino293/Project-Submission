@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types'
-import CommentItem from './CommentItem'
-import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types';
+import CommentItem from './CommentItem';
+import { useSelector } from 'react-redux';
 
 const CommentList = ({ comments, threadId }) => {
-  const { loading } = useSelector((state) => state.comments)
+  const { loading } = useSelector((state) => state.comments);
 
   if (loading) {
     return (
       <div className='flex justify-center py-8'>
         <div className='w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin'></div>
       </div>
-    )
+    );
   }
 
   if (!comments || comments.length === 0) {
@@ -32,11 +32,13 @@ const CommentList = ({ comments, threadId }) => {
         <h3 className='mt-2 text-sm font-medium text-gray-900'>Belum ada komentar</h3>
         <p className='mt-1 text-sm text-gray-500'>Jadilah yang pertama berkomentar!</p>
       </div>
-    )
+    );
   }
 
   // Sort comments by newest first
-  const sortedComments = [...comments].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  const sortedComments = [...comments].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 
   return (
     <div className='space-y-4'>
@@ -44,8 +46,8 @@ const CommentList = ({ comments, threadId }) => {
         <CommentItem key={comment.id} comment={comment} threadId={threadId} />
       ))}
     </div>
-  )
-}
+  );
+};
 
 CommentList.propTypes = {
   comments: PropTypes.arrayOf(
@@ -63,10 +65,10 @@ CommentList.propTypes = {
     })
   ),
   threadId: PropTypes.string.isRequired,
-}
+};
 
 CommentList.defaultProps = {
   comments: [],
-}
+};
 
-export default CommentList
+export default CommentList;

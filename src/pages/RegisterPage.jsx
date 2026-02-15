@@ -1,15 +1,15 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { registerUser, clearError } from '../store/slices/AuthSlice'
-import Input from '../components/common/Input'
-import Button from '../components/common/Button'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { registerUser, clearError } from '../store/slices/AuthSlice';
+import Input from '../components/common/Input';
+import Button from '../components/common/Button';
 
 const RegisterPage = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { loading, error, token } = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error, token } = useSelector((state) => state.auth);
 
   const {
     register,
@@ -18,25 +18,25 @@ const RegisterPage = () => {
     setError,
   } = useForm({
     defaultValues: { name: '', email: '', password: '' },
-  })
+  });
 
   useEffect(() => {
-    dispatch(clearError())
-  }, [dispatch])
+    dispatch(clearError());
+  }, [dispatch]);
 
   useEffect(() => {
     if (token) {
-      navigate('/')
+      navigate('/');
     }
-  }, [token, navigate])
+  }, [token, navigate]);
 
   const onSubmit = async (data) => {
     try {
-      await dispatch(registerUser(data)).unwrap()
+      await dispatch(registerUser(data)).unwrap();
     } catch (err) {
-      setError('root', { type: 'manual', message: err.message || 'Registrasi gagal' })
+      setError('root', { type: 'manual', message: err.message || 'Registrasi gagal' });
     }
-  }
+  };
 
   return (
     <div className='flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8'>
@@ -119,7 +119,7 @@ const RegisterPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;

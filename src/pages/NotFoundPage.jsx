@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import Navbar from '../components/common/Navbar'
+import { Link } from 'react-router-dom';
+import Navbar from '../components/common/Navbar';
 
 const NotFoundPage = () => {
   return (
@@ -17,7 +17,7 @@ const NotFoundPage = () => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

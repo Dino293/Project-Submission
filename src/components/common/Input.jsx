@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
-import { forwardRef } from 'react'
+import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
 const Input = forwardRef(
   (
@@ -39,11 +39,11 @@ const Input = forwardRef(
         />
         {error && <p className='mt-1 text-sm text-red-600'>{error}</p>}
       </div>
-    )
+    );
   }
-)
+);
 
-Input.displayName = 'Input'
+Input.displayName = 'Input';
 
 Input.propTypes = {
   label: PropTypes.string,
@@ -53,6 +53,6 @@ Input.propTypes = {
   error: PropTypes.string,
   required: PropTypes.bool,
   className: PropTypes.string,
-}
+};
 
-export default Input
+export default Input;

@@ -1,16 +1,33 @@
-# React + Vite
+## Deployment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi ini telah dideploy menggunakan Vercel dan dapat diakses di:
 
-Currently, two official plugins are available:
+🔗 [https://project-submission1-ivory.vercel.app](https://project-submission1-ivory.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Scripts yang Tersedia
 
-## React Compiler
+- `npm run dev` – Menjalankan aplikasi dalam mode development.
+- `npm run build` – Membangun aplikasi untuk production.
+- `npm run lint` – Menjalankan ESLint untuk memeriksa kode.
+- `npm run format` – Memformat kode dengan Prettier.
+- `npm test` – Menjalankan unit dan integration tests dengan Vitest.
+- `npm run e2e` – Menjalankan end-to-end tests dengan Cypress (headless).
+- `npm run e2e:open` – Membuka Cypress Test Runner.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Automation Testing
 
-## Expanding the ESLint configuration
+Aplikasi ini dilengkapi dengan pengujian otomatis:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Unit Test Reducer**: 2 file test (`authReducer.test.js`, `threadsReducer.test.js`)
+- **Thunk Test**: 2 file test (`authThunks.test.js`, `threadsThunks.test.js`)
+- **Component Test**: 2 file test (`CommentForm.test.jsx`, `LoginPage.test.jsx`)
+- **E2E Test**: 1 file test (`login.cy.js`) untuk menguji alur login.
+
+Pastikan untuk menjalankan `npm test` dan `npm run e2e` sebelum melakukan pull request.
+
+## CI/CD
+
+Proyek ini menggunakan GitHub Actions untuk Continuous Integration. Setiap pull request ke branch `main` akan menjalankan seluruh rangkaian tes secara otomatis. Branch `main` juga dilindungi dengan aturan:
+
+- Minimal 1 review yang menyetujui.
+- Semua status check (termasuk hasil tes) harus lulus sebelum dapat di-merge.

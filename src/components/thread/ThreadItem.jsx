@@ -1,18 +1,18 @@
-import { Link } from 'react-router-dom'
-import { truncateText } from '../../utils/formatters'
-import { formatDate } from '../../utils/formatters'
-import VoteButton from '../vote/VoteButton'
-import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
+import { truncateText } from '../../utils/formatters';
+import { formatDate } from '../../utils/formatters';
+import VoteButton from '../vote/VoteButton';
+import { useSelector } from 'react-redux';
 
 const ThreadItem = ({ thread }) => {
-  const { user } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth);
 
   const getUserVote = () => {
-    if (!user) return 0
-    if (thread.upVotesBy?.includes(user.id)) return 1
-    if (thread.downVotesBy?.includes(user.id)) return -1
-    return 0
-  }
+    if (!user) return 0;
+    if (thread.upVotesBy?.includes(user.id)) return 1;
+    if (thread.downVotesBy?.includes(user.id)) return -1;
+    return 0;
+  };
 
   return (
     <div className='p-6 mb-4 transition-shadow bg-white rounded-lg shadow hover:shadow-md'>
@@ -50,7 +50,7 @@ const ThreadItem = ({ thread }) => {
                 onError={(e) => {
                   e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
                     thread.owner?.name || 'User'
-                  )}&background=3b82f6&color=fff`
+                  )}&background=3b82f6&color=fff`;
                 }}
               />
               <span className='font-medium text-sm'>{thread.owner?.name || 'Unknown User'}</span>
@@ -86,7 +86,7 @@ const ThreadItem = ({ thread }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ThreadItem
+export default ThreadItem;

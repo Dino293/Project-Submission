@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
-import { useForm } from 'react-hook-form'
-import { createComment } from '../../store/slices/commentsSlice'
-import { fetchThreadDetail } from '../../store/slices/threadsSlice'
-import Button from '../common/Button'
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { createComment } from '../../store/slices/commentsSlice';
+import { fetchThreadDetail } from '../../store/slices/threadsSlice';
+import Button from '../common/Button';
 
 const CommentForm = ({ threadId }) => {
-  const dispatch = useDispatch()
-  const { loading } = useSelector((state) => state.comments)
-  const { user } = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.comments);
+  const { user } = useSelector((state) => state.auth);
 
   const {
     register,
@@ -19,28 +19,29 @@ const CommentForm = ({ threadId }) => {
     watch,
   } = useForm({
     defaultValues: { content: '' },
-  })
+  });
 
-  const content = watch('content', '')
+  // eslint-disable-next-line react-hooks/incompatible-library
+  const content = watch('content', '');
 
   const onSubmit = async (data) => {
     if (!user) {
-      setError('content', { type: 'manual', message: 'Silakan login untuk berkomentar' })
-      return
+      setError('content', { type: 'manual', message: 'Silakan login untuk berkomentar' });
+      return;
     }
 
     try {
-      await dispatch(createComment({ threadId, content: data.content })).unwrap()
-      dispatch(fetchThreadDetail(threadId))
-      reset()
+      await dispatch(createComment({ threadId, content: data.content })).unwrap();
+      dispatch(fetchThreadDetail(threadId));
+      reset();
     } catch (err) {
       setError('content', {
         type: 'manual',
         message: 'Gagal mengirim komentar. Silakan coba lagi.',
-      })
-      console.error('Failed to create comment:', err)
+      });
+      console.error('Failed to create comment:', err);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='mb-6'>
@@ -87,11 +88,11 @@ const CommentForm = ({ threadId }) => {
         </Button>
       </div>
     </form>
-  )
-}
+  );
+};
 
 CommentForm.propTypes = {
   threadId: PropTypes.string.isRequired,
-}
+};
 
-export default CommentForm
+export default CommentForm;

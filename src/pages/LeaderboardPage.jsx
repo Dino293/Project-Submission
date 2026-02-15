@@ -1,16 +1,16 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchLeaderboards } from '../store/slices/leaderboardsSlice'
-import Loading from '../components/common/Loading'
-import Navbar from '../components/common/Navbar'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLeaderboards } from '../store/slices/leaderboardsSlice';
+import Loading from '../components/common/Loading';
+import Navbar from '../components/common/Navbar';
 
 const LeaderboardPage = () => {
-  const dispatch = useDispatch()
-  const { leaderboards, loading } = useSelector((state) => state.leaderboards)
+  const dispatch = useDispatch();
+  const { leaderboards, loading } = useSelector((state) => state.leaderboards);
 
   useEffect(() => {
-    dispatch(fetchLeaderboards())
-  }, [dispatch])
+    dispatch(fetchLeaderboards());
+  }, [dispatch]);
 
   return (
     <div className='min-h-screen bg-gray-50'>
@@ -101,7 +101,7 @@ const LeaderboardPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LeaderboardPage
+export default LeaderboardPage;

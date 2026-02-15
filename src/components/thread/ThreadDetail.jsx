@@ -1,35 +1,35 @@
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { formatDate } from '../../utils/formatters'
-import VoteButton from '../vote/VoteButton'
-import CommentForm from '../comment/CommentForm'
-import CommentList from '../comment/CommentList'
-import Button from '../common/Button'
-import { toggleThreadForm } from '../../store/slices/uiSlice'
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { formatDate } from '../../utils/formatters';
+import VoteButton from '../vote/VoteButton';
+import CommentForm from '../comment/CommentForm';
+import CommentList from '../comment/CommentList';
+import Button from '../common/Button';
+import { toggleThreadForm } from '../../store/slices/uiSlice';
 
 const ThreadDetail = ({ thread, onBack }) => {
-  const dispatch = useDispatch()
-  const { user, token } = useSelector((state) => state.auth)
-  const { loading } = useSelector((state) => state.threads)
+  const dispatch = useDispatch();
+  const { user, token } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.threads);
 
   const getUserVote = () => {
-    if (!user || !thread) return 0
-    if (thread.upVotesBy?.includes(user.id)) return 1
-    if (thread.downVotesBy?.includes(user.id)) return -1
-    return 0
-  }
+    if (!user || !thread) return 0;
+    if (thread.upVotesBy?.includes(user.id)) return 1;
+    if (thread.downVotesBy?.includes(user.id)) return -1;
+    return 0;
+  };
 
   const handleCreateThread = () => {
-    dispatch(toggleThreadForm())
-  }
+    dispatch(toggleThreadForm());
+  };
 
   if (loading || !thread) {
     return (
       <div className='flex justify-center py-12'>
         <div className='w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin'></div>
       </div>
-    )
+    );
   }
 
   return (
@@ -113,7 +113,7 @@ const ThreadDetail = ({ thread, onBack }) => {
                     alt={thread.owner?.name}
                     className='w-10 h-10 rounded-full mr-3'
                     onError={(e) => {
-                      e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(thread.owner?.name || 'User')}&background=3b82f6&color=fff`
+                      e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(thread.owner?.name || 'User')}&background=3b82f6&color=fff`;
                     }}
                   />
                   <div>
@@ -230,8 +230,8 @@ const ThreadDetail = ({ thread, onBack }) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 ThreadDetail.propTypes = {
   thread: PropTypes.shape({
@@ -251,6 +251,6 @@ ThreadDetail.propTypes = {
     comments: PropTypes.array,
   }).isRequired,
   onBack: PropTypes.func,
-}
+};
 
-export default ThreadDetail
+export default ThreadDetail;

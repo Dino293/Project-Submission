@@ -1,17 +1,17 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../../store/slices/AuthSlice'
-import Button from './Button'
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../store/slices/AuthSlice';
+import Button from './Button';
 
 const Navbar = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { user, token } = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user, token } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
-    dispatch(logout())
-    navigate('/')
-  }
+    dispatch(logout());
+    navigate('/');
+  };
 
   return (
     <nav className='bg-white shadow-lg'>
@@ -67,7 +67,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

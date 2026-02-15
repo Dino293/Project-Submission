@@ -1,43 +1,43 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams, Link } from 'react-router-dom'
-import { fetchThreadDetail, clearThreadDetail } from '../store/slices/threadsSlice'
-import { getOwnProfile } from '../store/slices/AuthSlice'
-import { formatDate } from '../utils/formatters'
-import Loading from '../components/common/Loading'
-import Navbar from '../components/common/Navbar'
-import VoteButton from '../components/vote/VoteButton'
-import CommentForm from '../components/comment/CommentForm'
-import CommentList from '../components/comment/CommentList'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, Link } from 'react-router-dom';
+import { fetchThreadDetail, clearThreadDetail } from '../store/slices/threadsSlice';
+import { getOwnProfile } from '../store/slices/AuthSlice';
+import { formatDate } from '../utils/formatters';
+import Loading from '../components/common/Loading';
+import Navbar from '../components/common/Navbar';
+import VoteButton from '../components/vote/VoteButton';
+import CommentForm from '../components/comment/CommentForm';
+import CommentList from '../components/comment/CommentList';
 
 const ThreadDetailPage = () => {
-  const { id } = useParams()
-  const dispatch = useDispatch()
-  const { threadDetail, loading } = useSelector((state) => state.threads)
-  const { user, token } = useSelector((state) => state.auth)
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { threadDetail, loading } = useSelector((state) => state.threads);
+  const { user, token } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchThreadDetail(id))
+    dispatch(fetchThreadDetail(id));
 
     // Fetch user profile if token exists
     if (token) {
-      dispatch(getOwnProfile())
+      dispatch(getOwnProfile());
     }
 
     return () => {
-      dispatch(clearThreadDetail())
-    }
-  }, [dispatch, id, token])
+      dispatch(clearThreadDetail());
+    };
+  }, [dispatch, id, token]);
 
   const getUserVote = () => {
-    if (!user || !threadDetail) return 0
-    if (threadDetail.upVotesBy.includes(user.id)) return 1
-    if (threadDetail.downVotesBy.includes(user.id)) return -1
-    return 0
-  }
+    if (!user || !threadDetail) return 0;
+    if (threadDetail.upVotesBy.includes(user.id)) return 1;
+    if (threadDetail.downVotesBy.includes(user.id)) return -1;
+    return 0;
+  };
 
-  if (loading) return <Loading fullScreen />
-  if (!threadDetail) return null
+  if (loading) return <Loading fullScreen />;
+  if (!threadDetail) return null;
 
   return (
     <div className='min-h-screen bg-gray-50'>
@@ -135,7 +135,7 @@ const ThreadDetailPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ThreadDetailPage
+export default ThreadDetailPage;

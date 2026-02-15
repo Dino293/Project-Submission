@@ -1,26 +1,26 @@
-import PropTypes from 'prop-types'
-import ThreadItem from './ThreadItem'
-import { useSelector } from 'react-redux'
-import Button from '../common/Button'
-import { toggleThreadForm } from '../../store/slices/uiSlice'
-import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types';
+import ThreadItem from './ThreadItem';
+import { useSelector } from 'react-redux';
+import Button from '../common/Button';
+import { toggleThreadForm } from '../../store/slices/uiSlice';
+import { useDispatch } from 'react-redux';
 
 const ThreadList = ({ threads }) => {
-  const dispatch = useDispatch()
-  const { loading } = useSelector((state) => state.threads)
-  const { token } = useSelector((state) => state.auth)
-  const { showThreadForm } = useSelector((state) => state.ui)
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.threads);
+  const { token } = useSelector((state) => state.auth);
+  const { showThreadForm } = useSelector((state) => state.ui);
 
   const handleCreateThread = () => {
-    dispatch(toggleThreadForm())
-  }
+    dispatch(toggleThreadForm());
+  };
 
   if (loading) {
     return (
       <div className='flex justify-center py-12'>
         <div className='w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin'></div>
       </div>
-    )
+    );
   }
 
   if (!threads || threads.length === 0) {
@@ -63,11 +63,11 @@ const ThreadList = ({ threads }) => {
           )}
         </div>
       </div>
-    )
+    );
   }
 
   // Sort threads by newest first
-  const sortedThreads = [...threads].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  const sortedThreads = [...threads].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   return (
     <div className='space-y-6'>
@@ -113,8 +113,8 @@ const ThreadList = ({ threads }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 ThreadList.propTypes = {
   threads: PropTypes.arrayOf(
@@ -134,10 +134,10 @@ ThreadList.propTypes = {
       totalComments: PropTypes.number,
     })
   ),
-}
+};
 
 ThreadList.defaultProps = {
   threads: [],
-}
+};
 
-export default ThreadList
+export default ThreadList;
